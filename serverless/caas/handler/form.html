@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Webnesday</title>
+    </head>
+    
+    <body>
+        <h1>
+            Webnesday is awsome
+        </h1>
+        
+        <p>How many Webnesdays have you attended?</p>
+
+        {{if ne .Err ""}}<p style="color:red">.Err</p>{{end}}
+        
+        <form action="" target="_self" method="post">
+            <input type="radio" name="attended" value="first">
+            <label for="first">This is my first</label><br><br>
+            <input type="radio" name="attended" value="low">
+            <label for="low">2 to 5</label><br><br>
+            <input type="radio" name="attended" value="medium">
+            <label for="medium">6 to 10</label><br><br>
+            <input type="radio" name="attended" value="high">
+            <label for="high">more than 10</label><br><br>
+            <input type="radio" name="attended" value="all">
+            <label for="all">all of them</label><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Webnesday</title>
+        <meta http-equiv="refresh" content="5">
+    </head>
+    
+    <body>
+        <h1>
+            Result
+        </h1>
+        <table>
+            <tr>
+                <th>times attended</th>
+                <th>count</th>
+            </tr>
+            {{range $field := .}}
+            <tr>
+                <td>{{$field.Attended}}</td>
+                <td>{{$field.Count}}</td>
+            </tr>
+            {{end}}
+        </table>
+    </body>
+</html>
