@@ -3,6 +3,7 @@ package storage
 import (
 	"context"
 	"log"
+	"os"
 
 	"github.com/adlerhurst/webnesday/serverless/caas/handler"
 	pgx "github.com/jackc/pgx/v4"
@@ -28,9 +29,8 @@ type CRDBReader struct {
 }
 
 func NewCRDBReader() *CRDBReader {
-	dsn := "postgresql://adlerhurst:3XH4qwkRd5nW-TQAfFqqUg@free-tier11.gcp-us-east1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full&options=--cluster%3Dsilvan-1753"
 	ctx := context.Background()
-	conn, err := pgx.Connect(ctx, dsn)
+	conn, err := pgx.Connect(ctx, os.Getenv("CRDB_CONN"))
 	if err != nil {
 		log.Fatalf("unable to connect to crdb: %v", err)
 	}

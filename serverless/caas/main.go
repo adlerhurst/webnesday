@@ -17,7 +17,7 @@ var (
 func main() {
 	overwriteEnv()
 	h := handler.New(storage.NewPubsubWriter(), storage.NewCRDBReader())
-	http.HandleFunc("/", handler.HandleHelloWorld)
+	http.HandleFunc("/", handler.HandleRoot)
 	http.HandleFunc("/gui/form", h.HandleForm)
 	http.HandleFunc("/gui/result", h.HandleResult)
 	log.Fatal(http.ListenAndServe(port, nil))

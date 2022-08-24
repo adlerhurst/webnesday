@@ -25,7 +25,7 @@ func NewPubsubWriter() *PubsubWriter {
 	projectID := os.Getenv("GOOGLE_PROJECT_ID")
 	client, err := pubsub.NewClient(context.TODO(), projectID)
 	if err != nil {
-		log.Fatal("unable to connect to pubsub")
+		log.Fatal("unable to connect to pubsub: ", err)
 	}
 
 	return &PubsubWriter{topic: client.Topic("webnesday")}
