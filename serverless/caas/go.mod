@@ -2,7 +2,10 @@ module github.com/adlerhurst/webnesday/serverless/caas
 
 go 1.19
 
-require cloud.google.com/go/pubsub v1.24.0
+require (
+	cloud.google.com/go/pubsub v1.24.0
+	github.com/jackc/pgx/v4 v4.17.0
+)
 
 require (
 	cloud.google.com/go v0.103.0 // indirect
@@ -20,7 +23,6 @@ require (
 	github.com/jackc/pgproto3/v2 v2.3.1 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20200714003250-2b9c44734f2b // indirect
 	github.com/jackc/pgtype v1.12.0 // indirect
-	github.com/jackc/pgx/v4 v4.17.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
 	golang.org/x/net v0.0.0-20220822230855-b0a4917ee28c // indirect

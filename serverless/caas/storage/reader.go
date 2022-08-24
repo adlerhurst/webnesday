@@ -39,7 +39,7 @@ func NewCRDBReader() *CRDBReader {
 
 // CREATE TABLE webnesday (attended STRING PRIMARY KEY, count INT);
 func (r *CRDBReader) Get(ctx context.Context) ([]*handler.ResultData, error) {
-	rows, err := r.conn.Query(ctx, "SELECT attended, count FROM webnesday ORDER BY count")
+	rows, err := r.conn.Query(ctx, "SELECT attended, count FROM webnesday ORDER BY count DESC")
 	if err != nil {
 		return nil, err
 	}
@@ -48,10 +48,11 @@ func (r *CRDBReader) Get(ctx context.Context) ([]*handler.ResultData, error) {
 
 	for rows.Next() {
 		row := new(handler.ResultData)
-		if err := rows.Scan(row.Attended, row.Count); err != nil {
+		if err := rows.Scan(&row.Attended, &row.Count); err != nil {
 			rows.Close()
 			return nil, err
 		}
+		res = append(res, row)
 	}
 
 	rows.Close()
