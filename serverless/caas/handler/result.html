@@ -3,6 +3,22 @@
     <head>
         <title>Webnesday</title>
         <meta http-equiv="refresh" content="5">
+        <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+            tr > td {
+                padding: 5px 15px 5px 15px;
+                min-width: 100px;
+            }
+            .attended {
+                text-align: center;
+            }
+            .count {
+                text-align: right;
+            }
+        </style>
     </head>
     
     <body>
@@ -16,8 +32,8 @@
             </tr>
             {{range $field := .}}
             <tr>
-                <td>{{$field.Attended}}</td>
-                <td>{{$field.Count}}</td>
+                <td class="attended">{{$field.Attended}}</td>
+                <td class="count">{{$field.Count}}</td>
             </tr>
             {{end}}
         </table>

@@ -29,11 +29,32 @@ func (h *Handler) HandleResult(w http.ResponseWriter, r *http.Request) {
 		log.Println("unable to get", err)
 	}
 
+	for _, r := range res {
+		r.Attended = translateAttended(r.Attended)
+	}
+
 	logOnErr("error durring result rendering:", resultTemplate.Execute(w, res))
 }
 
 func logOnErr(cause string, err error) {
 	if err != nil {
 		log.Println(cause, err)
+	}
+}
+
+func translateAttended(attended string) string {
+	switch attended {
+	case "first":
+		return "First time"
+	case "low":
+		return "2 to 5"
+	case "medium":
+		return "6 to 10"
+	case "high":
+		return "more than 10"
+	case "all":
+		return "All (Pascal)"
+	default:
+		return ""
 	}
 }
