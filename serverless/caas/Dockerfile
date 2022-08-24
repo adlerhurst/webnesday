@@ -14,6 +14,5 @@ COPY main.go .
 COPY handler ./handler/
 COPY storage ./storage/
 
-RUN go build -o caas main.go \
-    && ./caas
-# ENTRYPOINT [ "caas" ]
+RUN go build -o caas main.go
+ENTRYPOINT [ "./caas" ]
