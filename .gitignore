@@ -13,3 +13,8 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+serverless/caas/certs
+.vscode
+serverless/service_acc.json
+**/__debug_bin

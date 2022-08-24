@@ -6,11 +6,11 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=
 ENV CRDB_CONN=
 
 WORKDIR /go/src/github.com/adlerhurst/webnesday/serverless/caas
-COPY go.* .
+COPY go.* ./
 
 RUN go mod download
 
-COPY main.go ./
+COPY main.go .
 COPY handler ./handler/
 COPY storage ./storage/
 
