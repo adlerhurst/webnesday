@@ -10,7 +10,7 @@ COPY go.* .
 
 RUN go mod download
 
-COPY main.go .
+COPY main.go ./
 COPY handler ./handler/
 COPY storage ./storage/
 
