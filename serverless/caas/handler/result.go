@@ -33,13 +33,7 @@ func (h *Handler) HandleResult(w http.ResponseWriter, r *http.Request) {
 		r.Attended = translateAttended(r.Attended)
 	}
 
-	logOnErr("error durring result rendering:", resultTemplate.Execute(w, res))
-}
-
-func logOnErr(cause string, err error) {
-	if err != nil {
-		log.Println(cause, err)
-	}
+	resultTemplate.Execute(w, res)
 }
 
 func translateAttended(attended string) string {

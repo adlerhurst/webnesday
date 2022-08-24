@@ -32,7 +32,7 @@ func (h *Handler) HandleForm(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) handleFormGET(w http.ResponseWriter, r *http.Request) {
-	logOnErr("error durring form rendering:", formTemplate.Execute(w, new(formData)))
+	formTemplate.Execute(w, new(formData))
 }
 
 type request struct {
@@ -41,17 +41,20 @@ type request struct {
 
 func (h *Handler) handleFormPOST(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
-		log.Printf("unable to parse form: %v", err)
-		w.WriteHeader(http.StatusNotAcceptable)
-		logOnErr("error durring form rendering:", formTemplate.Execute(w, formData{Err: "unable to parse form"}))
+		errorOccured(w, err, "unable to parse form")
 		return
 	}
 
 	if err := h.w.Save(r.Context(), r.Form.Get("attended")); err != nil {
-		log.Printf("unable to save form: %v", err)
-		w.WriteHeader(http.StatusNotAcceptable)
-		logOnErr("error durring form rendering:", formTemplate.Execute(w, formData{Err: "unable to store data"}))
+		errorOccured(w, err, "unable to save form")
 		return
 	}
+
 	http.Redirect(w, r, "result", http.StatusFound)
+}
+
+func errorOccured(w http.ResponseWriter, err error, text string) {
+	log.Printf("%s: %v", text, err)
+	w.WriteHeader(http.StatusNotAcceptable)
+	formTemplate.Execute(w, formData{Err: "unable to parse form"})
 }
